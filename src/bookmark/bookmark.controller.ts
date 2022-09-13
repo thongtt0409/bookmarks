@@ -1,3 +1,4 @@
+import { EditBookmark } from './dto/edit-bookmark';
 import { BookmarkService } from './bookmark.service';
 import {
   Controller,
@@ -20,19 +21,37 @@ export class BookmarkController {
   constructor(private bookmarkService: BookmarkService) {}
 
   @Post()
-  createBookmark(@getUser() userId: number, @Body() dto: CreateBookmark) {
+  createBookmark(@getUser('id') userId: number, @Body() dto: CreateBookmark) {
     return this.bookmarkService.createBookmark(dto, userId);
   }
 
   @Get()
-  getBookmark() {}
+  getBookmark(@getUser('id') userId: number) {
+    return this.bookmarkService.getBookmark(userId);
+  }
 
   @Get('/:id')
-  getBookmarkById(@Param('id', ParseIntPipe) bookmarkId: number) {}
+  getBookmarkById(
+    @Param('id', ParseIntPipe) bookmarkId: number,
+    @getUser('id') userId: number,
+  ) {
+    return this.bookmarkService.getBookmarkById(bookmarkId, userId);
+  }
 
-  @Patch()
-  editBookmarkById(@getUser() userId: number) {}
+  @Patch('/:id')
+  editBookmarkById(
+    @Param('id', ParseIntPipe) bookmarkId: number,
+    @getUser('id') userId: number,
+    @Body() dto: EditBookmark,
+  ) {
+    return this.bookmarkService.editBookmarkById(bookmarkId, userId, dto);
+  }
 
-  @Delete()
-  deleteBookmarkById(@getUser() userId: number) {}
+  @Delete('/:id')
+  deleteBookmarkById(
+    @Param('id', ParseIntPipe) bookmarkId: number,
+    @getUser('id') userId: number,
+  ) {
+    return this.bookmarkService.deleteBookmarkById(bookmarkId, userId);
+  }
 }
