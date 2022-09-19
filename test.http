@@ -2,7 +2,7 @@ POST http://localhost:3000/auth/signup HTTP/1.1
 Content-type: application/json
 
 {
-    "email":"thongttdev@gmail.com",
+    "email":"user@gmail.com",
     "password":"123",
     "id":""
 }
@@ -20,4 +20,44 @@ Content-type: application/json
 ###
 
 GET http://localhost:3000/users/me
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoidGhvbmd0dGRldkBnbWFpbC5jb20iLCJpYXQiOjE2NjI5NzEwMDMsImV4cCI6MTY2Mjk3MTkwM30.tJRvadWf2rsW0WNMSc59AfYWXhnm0IxI8RgiZ8GoZnw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE1LCJlbWFpbCI6InRob25ndHRkZXZAZ21haWwuY29tIiwiaWF0IjoxNjYzMDczNzMwLCJleHAiOjE2NjMwNzQ2MzB9.rDxPzdbpqnhEJPSPxFI4U0qISj_ZCmAgMx3uq7OqFE0
+
+###
+POST http://localhost:3000/bookmark
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE1LCJlbWFpbCI6InRob25ndHRkZXZAZ21haWwuY29tIiwiaWF0IjoxNjYzNTc3Mjc5LCJleHAiOjE2NjM1NzgxNzl9.aQV4N-mz4deKvs-KMupWyoJe4IxDe90OAEyNPpEprCk
+
+{
+    "title":"Nestjs ebook - 2",
+    "description":"Nest for beginner 2",
+    "link":"https://github.com/thongtt0409/bookmarks"
+}
+
+###
+GET  http://localhost:3000/bookmark
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE1LCJlbWFpbCI6InRob25ndHRkZXZAZ21haWwuY29tIiwiaWF0IjoxNjYzMDczNzMwLCJleHAiOjE2NjMwNzQ2MzB9.rDxPzdbpqnhEJPSPxFI4U0qISj_ZCmAgMx3uq7OqFE0
+
+###
+GET  http://localhost:3000/bookmark/2
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE1LCJlbWFpbCI6InRob25ndHRkZXZAZ21haWwuY29tIiwiaWF0IjoxNjYzNTc4Mzc5LCJleHAiOjE2NjM1NzkyNzl9.TgpjMY4s0IuVe4QtnODq70zA-DXgOYY59kVPgJrDgZs
+
+###
+
+PATCH   http://localhost:3000/bookmark/1
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE1LCJlbWFpbCI6InRob25ndHRkZXZAZ21haWwuY29tIiwiaWF0IjoxNjYzMDcyNjY0LCJleHAiOjE2NjMwNzM1NjR9.MwCUQiUaArroSlZojoAFf0A3aZwKI5Kal7QQnpxg02s
+
+{
+    "title":"NodeJs ebook - 1",
+    "description":"Node for beginner 2",
+    "link":"https://github.com/thongtt0409/bookmarks"
+}
+
+###
+
+DELETE    http://localhost:3000/bookmark/1
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE1LCJlbWFpbCI6InRob25ndHRkZXZAZ21haWwuY29tIiwiaWF0IjoxNjYzMDcyNjY0LCJleHAiOjE2NjMwNzM1NjR9.MwCUQiUaArroSlZojoAFf0A3aZwKI5Kal7QQnpxg02s
+

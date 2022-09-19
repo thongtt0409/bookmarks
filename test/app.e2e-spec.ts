@@ -5,6 +5,7 @@ import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
 import * as pactum from 'pactum';
+import { CreateBookmark, EditBookmark } from '../src/bookmark/dto';
 
 describe('App e2e', () => {
   let app: INestApplication;
@@ -139,11 +140,70 @@ describe('App e2e', () => {
   });
 
   describe('Bookmarks', () => {
-    describe('Create bookmark', () => {});
-    describe('Get bookmarks', () => {});
-    describe('Get bookmark by id', () => {});
-    describe('Edit bookmark by id', () => {});
-    describe('Delete bookmark by id', () => {});
+    describe('Create bookmark', () => {
+      const dto: CreateBookmark = {
+        title: 'Nestjs book ',
+        link: 'https://docs.nestjs.com/providers',
+      };
+      it('should create bookmark', () => {
+        return pactum
+          .spec()
+          .post('/bookmark')
+          .withHeaders({ Authorization: 'Bearer $S{userAt}' })
+          .withBody(dto)
+          .expectStatus(201)
+          .stores('bookmarkId', 'id');
+      });
+    });
+    describe('Get bookmarks', () => {
+      it('should get bookmark', () => {
+        return pactum
+          .spec()
+          .get('/bookmark')
+          .withHeaders({ Authorization: 'Bearer $S{userAt}' })
+          .expectStatus(200)
+          .expectJsonLength(1);
+      });
+    });
+    describe('Get bookmark by id', () => {
+      it('should get bookmark by id', () => {
+        return pactum
+          .spec()
+          .get('/bookmark/{id}')
+          .withPathParams('id', '$S{bookmarkId}')
+          .withHeaders({ Authorization: 'Bearer $S{userAt}' })
+          .expectStatus(200)
+          .expectBodyContains('$S{bookmarkId}');
+      });
+    });
+    describe('Edit bookmark by id', () => {
+      const dto: EditBookmark = {
+        link: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400',
+        description:
+          'The HyperText Transfer Protocol (HTTP) 400 Bad Request response status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error (for example, malformed request syntax, invalid request message framing, or deceptive request routing).',
+      };
+      it('should edit bookmark', () => {
+        return pactum
+          .spec()
+          .patch('/bookmark/{id}')
+          .withPathParams('id', '$S{bookmarkId}')
+          .withHeaders({ Authorization: 'Bearer $S{userAt}' })
+          .withBody(dto)
+          .expectStatus(200)
+          .expectBodyContains(dto.link)
+          .expectBodyContains(dto.description);
+      });
+    });
+    describe('Delete bookmark by id', () => {
+      it('should delete bookmark', () => {
+        return pactum
+          .spec()
+          .delete('/bookmark/{id}')
+          .withPathParams('id', '$S{bookmarkId}')
+          .withHeaders({ Authorization: 'Bearer $S{userAt}' })
+          .expectStatus(204);
+      });
+    });
   });
 
   it.todo('should pass');

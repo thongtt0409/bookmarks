@@ -29,10 +29,10 @@ export class BookmarkService {
     });
   }
 
-  async getBookmarkById(bookMarkId: number, userId: number) {
+  async getBookmarkById(bookmarkId: number, userId: number) {
     const bookMark = await this.prisma.bookmark.findFirst({
       where: {
-        id: bookMarkId,
+        id: bookmarkId,
         userId,
       },
       include: {
