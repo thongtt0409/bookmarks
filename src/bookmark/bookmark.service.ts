@@ -1,4 +1,4 @@
-import { EditBookmark } from './dto/edit-bookmark';
+import { EditBookmark } from './dto/edit-bookmark.dto';
 import { PrismaService } from './../prisma/prisma.service';
 import { Injectable, ForbiddenException } from '@nestjs/common';
 import { CreateBookmark } from './dto/create-bookmark.dto';

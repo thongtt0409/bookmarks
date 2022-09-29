@@ -1,0 +1,32 @@
+POST http://localhost:3000/task
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoidGhvbmd0dGRldkBnbWFpbC5jb20iLCJpYXQiOjE2NjM3NTAyNDYsImV4cCI6MTY2MzgzNjY0Nn0.MRf2VaoxjI1lox_1bE4OX5rEwGyNjwxIBII1WKtXsZs
+
+{
+    "title":"Pagination Product model",
+    "description":"Developer need to do query header page and offset using limit and skip method.",
+    "status":true,
+    "users": {
+           "create": [
+        { "userId": 2 }
+      ]
+    }
+    
+}
+
+###
+GET http://localhost:3000/task/14
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoidGhvbmd0dGRldkBnbWFpbC5jb20iLCJpYXQiOjE2NjM3NTAyNDYsImV4cCI6MTY2MzgzNjY0Nn0.MRf2VaoxjI1lox_1bE4OX5rEwGyNjwxIBII1WKtXsZs
+
+
+###
+PATCH http://localhost:3000/task/14
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoiZW1wbG95ZWUyQGdtYWlsLmNvbSIsImlhdCI6MTY2Mzc3MjM1MCwiZXhwIjoxNjYzODU4NzUwfQ.W8MMQY5usgNlpGxMzoWlMaKu4O2T2mGM3k7UaP1IYc8
+
+{
+    "title":"Pagination Product model",
+    "description":"Developer need to do query header page and offset using limit and skip method.",
+    "status":false
+}
